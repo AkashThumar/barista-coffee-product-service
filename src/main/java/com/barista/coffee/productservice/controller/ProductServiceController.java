@@ -70,7 +70,8 @@ public class ProductServiceController {
 		return new ResponseEntity<>(productService.getProduct(productName), HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "Product Get API", notes = "Product Get API", httpMethod = "GET")
+	@ApiOperation(value = "Product Quantity Check and Update API", 
+			notes = "Product Quantity Check and Update API based on the ordered quantity", httpMethod = "PUT")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Product Updated Successfully", response = Product.class),
 			@ApiResponse(code = 404, message = "Product Not Found", response = ErrorBean.class),

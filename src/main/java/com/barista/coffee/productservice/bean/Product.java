@@ -1,6 +1,7 @@
 package com.barista.coffee.productservice.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Product implements Serializable {
 
@@ -11,6 +12,7 @@ public class Product implements Serializable {
 	private Long productId;
 	private String productName;
 	private Integer quantity;
+	private BigDecimal amount;
 
 	public Long getProductId() {
 		return productId;
@@ -34,6 +36,14 @@ public class Product implements Serializable {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 }

@@ -67,6 +67,7 @@ public class ProductServiceImpl implements ProductService {
 				productResponse.setProductId(product.getProductid());
 				productResponse.setProductName(product.getName());
 				productResponse.setQuantity(product.getQuantity());
+				productResponse.setAmount(product.getAmount());
 				return productResponse;
 			} else {
 				throw new ProductServiceException(HttpStatus.UNPROCESSABLE_ENTITY, new ErrorBean(ERROR_CODE_BCPS_103, ERROR_MESSAGE_BCPS_103), null);
