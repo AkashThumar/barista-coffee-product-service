@@ -1,5 +1,7 @@
 package com.barista.coffee.productservice.service.impl;
 
+import java.util.concurrent.locks.Lock;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.integration.support.locks.LockRegistry;
 
 import com.barista.coffee.productservice.ProductServiceException;
 import com.barista.coffee.productservice.bean.ProductRequest;
@@ -24,9 +27,16 @@ public class ProductServiceImplTest {
 	@Mock
 	private ProductRepository productRepository;
 
+	@Mock
+	private LockRegistry lockRegistory;
+	
 	@BeforeEach
-	public void setUp() {
+	public void setUp() throws InterruptedException {
 		MockitoAnnotations.openMocks(this);
+		
+		Lock mockedLock = Mockito.mock(Lock.class);
+		Mockito.when(lockRegistory.obtain(Mockito.any())).thenReturn(mockedLock);
+		Mockito.when(mockedLock.tryLock(Mockito.anyLong(), Mockito.any())).thenReturn(true);
 	}
 
 	@Test
